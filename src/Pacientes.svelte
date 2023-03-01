@@ -12,6 +12,8 @@
     import { onDestroy } from "svelte";
     import Toastify from "toastify-js";
 
+    let searchTerm = "";
+    let listaPacientesFiltrada=[];
     let pacientes = [];
     let paciente = {
         nombre: "",
@@ -66,7 +68,7 @@
                 Swal.fire("Deleted!", "Your file has been deleted.", "success");
                 borrarConfirmado(id);
             }
-        });        
+        });
     };
 
     const borrarConfirmado = async (id) => {
@@ -126,6 +128,9 @@
         editStatus = false;
         currentId = "";
     };
+
+    $: listaPacientesFiltrada = pacientes.filter(item=>item.apellido.toLowerCase().startsWith(searchTerm)); 
+    $: console.log(listaPacientesFiltrada)
 </script>
 
 <main>
@@ -177,8 +182,12 @@
                 </form>
             </div>
             <div class="col-md-4">
-                {#each pacientes as paciente}
-                    <div class="card card-body mt-2">
+                <div class="row">
+                    <label for="buscar">Buscar Paciente</label>
+                    <input type="text" bind:value={searchTerm} />
+                </div>
+                {#each listaPacientesFiltrada as paciente}
+                    <div class="card card-body mt-1">
                         <div class="d-flex justify-content-start">
                             <p>{paciente.nroSocio} -</p>
                             <p>{paciente.apellido}.</p>
