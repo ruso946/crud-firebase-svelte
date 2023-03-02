@@ -1,6 +1,5 @@
 <script>
-    import Pacientes from "./Pacientes.svelte";	
-    import Pruebas from "./pruebasIndexof/Pruebas.svelte"
+    import Pacientes from "./Pacientes.svelte";    
 </script>
 
 <main>

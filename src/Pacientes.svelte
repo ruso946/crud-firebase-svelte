@@ -13,7 +13,7 @@
     import Toastify from "toastify-js";
 
     let searchTerm = "";
-    let listaPacientesFiltrada=[];
+    let listaPacientesFiltrada = [];
     let pacientes = [];
     let paciente = {
         nombre: "",
@@ -129,8 +129,10 @@
         currentId = "";
     };
 
-    $: listaPacientesFiltrada = pacientes.filter(item=>item.apellido.toLowerCase().startsWith(searchTerm)); 
-    $: console.log(listaPacientesFiltrada)
+    $: listaPacientesFiltrada = pacientes.filter((item) =>
+        item.apellido.toLowerCase().startsWith(searchTerm)
+    );
+    $: console.log(listaPacientesFiltrada);
 </script>
 
 <main>
@@ -186,35 +188,50 @@
                     <label for="buscar">Buscar Paciente</label>
                     <input type="text" bind:value={searchTerm} />
                 </div>
-                {#each listaPacientesFiltrada as paciente}
-                    <div class="card card-body mt-1">
-                        <div class="d-flex justify-content-start">
-                            <p>{paciente.nroSocio} -</p>
-                            <p>{paciente.apellido}.</p>
-                            <p>{paciente.nombre}</p>
-                        </div>
-                        <div class="d-flex justify-content-start">
-                            <button
-                                on:click={editarPaciente(paciente)}
-                                class="btn btn-warning"
-                            >
-                                <i class="material-icons">edit</i>
-                            </button>
-                            <div>
-                                <button
-                                    on:click={borrarPaciente(paciente.id)}
-                                    class="btn btn-danger"
-                                >
-                                    <i class="material-icons">delete_forever</i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                {/each}
+                <div class="cuerpoLista overflow-scroll">
+                    <table class="table ">
+                        <thead>
+                            <th scope="col">nro socio</th>
+                            <th scope="col">apellido</th>
+                            <th scope="col">nombre</th>
+                            <th scope="col" />
+                            <th scope="col" />
+                        </thead>
+
+                        <tbody>
+                            {#each listaPacientesFiltrada as paciente}
+                                <tr>
+                                    <td>{paciente.nroSocio}</td>
+                                    <td>{paciente.apellido}</td>
+                                    <td>{paciente.nombre}</td>
+                                    <td>
+                                        <i
+                                            on:click={editarPaciente(paciente)}
+                                            class="material-icons">edit</i
+                                        >
+                                    </td>
+                                    <td>
+                                        <i
+                                            on:click={borrarPaciente(
+                                                paciente.id
+                                            )}
+                                            class="material-icons"
+                                            >delete_forever</i
+                                        >
+                                    </td>
+                                </tr>
+                            {/each}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </main>
 
 <style>
+    .cuerpoLista {
+        height: 20em;
+        width: fit-content;
+    }
 </style>
