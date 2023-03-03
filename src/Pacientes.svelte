@@ -136,11 +136,11 @@
 </script>
 
 <main>
-    <div class="container p-4">
+    <div class="container p-4 bg-dark text-white">
         <div class="row">
             <div class="col-md-4">
                 <form
-                    class="card card-body p-5"
+                    class="card card-body p-5 bg-dark text-white"
                     on:submit|preventDefault={handleSubmit}
                 >
                     <div class="mb-3">
@@ -167,7 +167,7 @@
                         />
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-3 mt-3">
                         <label class="text-secondary fs-5" for="nroSocio"
                             >nro. Socio</label
                         >
@@ -179,17 +179,17 @@
                         />
                     </div>
                     <div>
-                        <button class="btn btn-primary">save</button>
+                        <button class="btn btn-warning">save</button>
                     </div>
                 </form>
             </div>
-            <div class="col-md-4">
-                <div class="row">
+            <div class="col-md-4 bg-dark text-white mt-4 p-3">
+                <div class="row mb-3">
                     <label for="buscar">Buscar Paciente</label>
                     <input type="text" bind:value={searchTerm} />
                 </div>
                 <div class="cuerpoLista overflow-scroll">
-                    <table class="table ">
+                    <table class="table table-sm bg-dark text-white">
                         <thead>
                             <th scope="col">nro socio</th>
                             <th scope="col">apellido</th>
@@ -207,12 +207,16 @@
                                     <td>
                                         <i
                                             on:click={editarPaciente(paciente)}
+                                            on:keyup={editarPaciente(paciente)}
                                             class="material-icons">edit</i
                                         >
                                     </td>
                                     <td>
                                         <i
                                             on:click={borrarPaciente(
+                                                paciente.id
+                                            )}
+                                            on:keyup={borrarPaciente(
                                                 paciente.id
                                             )}
                                             class="material-icons"
@@ -233,5 +237,11 @@
     .cuerpoLista {
         height: 20em;
         width: fit-content;
+    }
+
+    th {
+        position: sticky;
+        top: 0;
+        background-color: #1a1818;
     }
 </style>
