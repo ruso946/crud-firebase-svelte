@@ -43,9 +43,7 @@
         (querySnapshot) => {
             pacientes = querySnapshot.docs.map((doc) => {
                 return { ...doc.data(), id: doc.id };
-            });
-
-            console.log(pacientes);
+            });            
         },
         (err) => {
             console.log(err);
@@ -132,7 +130,7 @@
     $: listaPacientesFiltrada = pacientes.filter((item) =>
         item.apellido.toLowerCase().startsWith(searchTerm)
     );
-    $: console.log(listaPacientesFiltrada);
+    //$: console.log(listaPacientesFiltrada);
 </script>
 
 <main>

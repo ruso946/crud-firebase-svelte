@@ -1,14 +1,15 @@
 <script>
-    import Pacientes from "./Pacientes.svelte";    
-    import TablaScrollableGpt from "./pruebasIndexof/TablaScrollableGpt.svelte";
-    import SelectPlan from "./SelectPlan.svelte";
+    import Pacientes from "./Pacientes.svelte";        
+    import Select2 from "./Select2.svelte";
+    
 
 </script>
 
 <main>
 
 	<Pacientes />   
-    <SelectPlan />
+    <Select2 />   
+    
 
 
 </main>
